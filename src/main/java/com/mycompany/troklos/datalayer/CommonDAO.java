@@ -6,12 +6,14 @@
 package com.mycompany.troklos.datalayer;
 
 import java.io.Serializable;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 
 /**
  *
  * @author daniel
  */
-public interface CommonDAO {
+public interface CommonDAO extends InitializingBean, DisposableBean {
     public void openSession();
     
     public void closeSession();

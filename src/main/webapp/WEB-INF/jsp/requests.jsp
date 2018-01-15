@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Requests</h1>
+        <h1>Requests ${message}</h1>
     </body>
 </html>

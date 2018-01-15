@@ -17,8 +17,8 @@ import java.io.Serializable;
  */
 public abstract class CommonService {
     
-    protected CommonDAO dao;        
-    
+    protected CommonDAO dao;   
+        
     public void update(Serializable item) {
         dao.beginTransaction();
         dao.update(item, this.getClass());

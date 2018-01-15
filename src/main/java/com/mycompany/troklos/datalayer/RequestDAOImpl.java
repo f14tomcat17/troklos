@@ -6,6 +6,7 @@
 package com.mycompany.troklos.datalayer;
 
 import com.mycompany.troklos.businesslayer.Request;
+import java.util.List;
 
 /**
  *
@@ -14,14 +15,14 @@ import com.mycompany.troklos.businesslayer.Request;
 public class RequestDAOImpl extends CommonDAOImpl implements RequestDAO {
 
     @Override
-    public Request getById() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Request getById(int id) {
+        return (Request) session.get(Request.class, id);
     }
 
     @Override
-    public Request getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public List<Request> getAll() {
+        return session.createCriteria(Request.class).list();        
+    }  
     
     
 }

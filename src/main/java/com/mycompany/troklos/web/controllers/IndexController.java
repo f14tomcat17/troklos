@@ -3,12 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.troklos.web;
+package com.mycompany.troklos.web.controllers;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,17 +15,17 @@ import org.springframework.web.servlet.ModelAndView;
  * @author daniel
  */
 
-@Controller("requestController")
-@RequestMapping("/requests")
-public class RequestController {
+@Controller("indexController")
+@RequestMapping(value={"/index", "/"})
+public class IndexController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getAll() {
-        return new ModelAndView("requests", "message", "que os jjodan");
+        return new ModelAndView("index", "message", "indice");
     }
     
     @RequestMapping(value="{id}", method = RequestMethod.GET)
-    public String getById(@PathVariable int id) {
-        return "getById";
+    public ModelAndView getById(@PathVariable int id) {
+        return new ModelAndView("index", "message", id);
     }
     
     

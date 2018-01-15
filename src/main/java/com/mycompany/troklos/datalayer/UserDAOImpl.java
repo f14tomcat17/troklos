@@ -7,6 +7,9 @@ package com.mycompany.troklos.datalayer;
 
 import com.mycompany.troklos.businesslayer.User;
 import java.util.List;
+import javax.persistence.EntityManager;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -16,11 +19,11 @@ public class UserDAOImpl extends CommonDAOImpl implements UserDAO {
 
     @Override
     public User getById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (User) session.get(User.class, id);
     }
 
     @Override
     public List<User> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return session.createCriteria(User.class).list();        
     }       
 }

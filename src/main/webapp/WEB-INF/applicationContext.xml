@@ -28,4 +28,10 @@
 
 <bean id="User" class="com.mycompany.troklos.businesslayer.User"></bean>
 
+<bean id="RequestService" class="com.mycompany.troklos.servicelayer.RequestService"></bean>
+
+<bean id="PrivilegesService" class="com.mycompany.troklos.servicelayer.PrivilegesService"></bean>
+
+<bean id="UserService" class="com.mycompany.troklos.servicelayer.UserService"></bean>
+
 </beans>

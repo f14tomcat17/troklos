@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Users</h1>
+        <h1>Users ${message}</h1>
     </body>
 </html>

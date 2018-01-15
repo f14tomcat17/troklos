@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-ene-2018 12:26:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="troklos_world" name="com.mycompany.troklos.businesslayer.User" optimistic-lock="version" table="user">
+    <id name="iduser" type="java.lang.Integer">
+      <column name="iduser"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="com.mycompany.troklos.businesslayer.Privileges" fetch="select" name="privileges">
+      <column name="privilegesId" not-null="true"/>
+    </many-to-one>
+    <property name="name" type="string">
+      <column length="50" name="name" not-null="true"/>
+    </property>
+    <property name="surname" type="string">
+      <column length="50" name="surname" not-null="true"/>
+    </property>
+    <property name="email" type="string">
+      <column length="50" name="email" not-null="true" unique="true"/>
+    </property>
+    <property name="postalCode" type="string">
+      <column length="45" name="postalCode"/>
+    </property>
+    <property name="city" type="string">
+      <column length="45" name="city"/>
+    </property>
+    <property name="region" type="string">
+      <column length="45" name="region"/>
+    </property>
+    <property name="country" type="string">
+      <column length="45" name="country"/>
+    </property>
+    <property name="password" type="string">
+      <column length="250" name="password"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="requests" table="request">
+      <key>
+        <column name="iduser" not-null="true"/>
+      </key>
+      <one-to-many class="com.mycompany.troklos.businesslayer.Request"/>
+    </set>
+  </class>
+</hibernate-mapping>

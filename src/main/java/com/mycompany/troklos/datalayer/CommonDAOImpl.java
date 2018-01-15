@@ -7,7 +7,6 @@ package com.mycompany.troklos.datalayer;
 
 import java.io.Serializable;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -47,6 +46,9 @@ public abstract class CommonDAOImpl implements CommonDAO {
     
     @Override
     public void beginTransaction() {
+        if(session == null) {
+            openSession();
+        }
         if(transaction != null) {
             transaction.rollback();
         }
@@ -82,5 +84,15 @@ public abstract class CommonDAOImpl implements CommonDAO {
     @Override
     public void delete(Serializable item, Class<?> classType) {        
         session.delete(item);        
+    }
+    
+    @Override
+    public void afterPropertiesSet() {
+        openSession();
+    }
+    
+    @Override
+    public void destroy() {
+        closeSession();
     }
 }

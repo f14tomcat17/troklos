@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-ene-2018 12:26:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="troklos_world" name="com.mycompany.troklos.businesslayer.Request" optimistic-lock="version" table="request">
+    <id name="idrequest" type="int">
+      <column name="idrequest"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.mycompany.troklos.businesslayer.User" fetch="select" name="user">
+      <column name="iduser" not-null="true"/>
+    </many-to-one>
+    <property name="description" type="string">
+      <column length="45" name="description" not-null="true"/>
+    </property>
+    <property name="requestDate" type="string">
+      <column length="45" name="requestDate" not-null="true"/>
+    </property>
+    <property name="expDate" type="string">
+      <column length="45" name="expDate" not-null="true"/>
+    </property>
+    <property name="status" type="int">
+      <column name="status" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

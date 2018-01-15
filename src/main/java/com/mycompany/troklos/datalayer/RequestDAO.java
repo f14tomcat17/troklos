@@ -6,13 +6,14 @@
 package com.mycompany.troklos.datalayer;
 
 import com.mycompany.troklos.businesslayer.Request;
+import java.util.List;
 
 /**
  *
  * @author daniel
  */
 public interface RequestDAO {
-    public Request getById();
+    public Request getById(int id);
     
-    public Request getAll();        
+    public List<Request> getAll();        
 }

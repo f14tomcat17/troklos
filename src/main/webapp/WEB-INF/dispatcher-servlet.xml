@@ -26,11 +26,11 @@
     </bean>-->
     
    
-<bean name = "/index" class="com.mycompany.troklos.web.IndexController"/>
+<bean name = "/index" class="com.mycompany.troklos.web.controllers.IndexController"/>
     
-<bean name = "/requests" class="com.mycompany.troklos.web.RequestController"/>
+<bean name = "/requests" class="com.mycompany.troklos.web.controllers.RequestController"/>
 
-<bean name = "/users" class="com.mycompany.troklos.web.UserController"/>
+<bean name = "/users" class="com.mycompany.troklos.web.controllers.UserController"/>
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"

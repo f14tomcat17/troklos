@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-ene-2018 12:26:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="troklos_world" name="com.mycompany.troklos.businesslayer.Privileges" optimistic-lock="version" table="privileges">
+    <id name="idprivileges" type="java.lang.Integer">
+      <column name="idprivileges"/>
+      <generator class="identity"/>
+    </id>
+    <property name="name" type="string">
+      <column length="45" name="name" not-null="true" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="users" table="user">
+      <key>
+        <column name="privilegesId" not-null="true"/>
+      </key>
+      <one-to-many class="com.mycompany.troklos.businesslayer.User"/>
+    </set>
+  </class>
+</hibernate-mapping>
