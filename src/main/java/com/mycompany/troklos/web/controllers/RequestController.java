@@ -5,33 +5,41 @@
  */
 package com.mycompany.troklos.web.controllers;
 
+import com.mycompany.troklos.businesslayer.Request;
 import com.mycompany.troklos.servicelayer.RequestService;
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 /**
  *
  * @author daniel
  */
 
 @Controller("requestController")
+@EnableWebMvc
 @RequestMapping("/requests")
 public class RequestController {
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getAll() {
-        return new ModelAndView("requests", "message", "Num users: "+new RequestService().getAll().size());
-    }
+    private final HttpHeaders httpHeaders = new HttpHeaders();
     
-    @RequestMapping(value="{id}", method = RequestMethod.GET)
-    public ModelAndView getById(@PathVariable int id) {
-        return new ModelAndView("requests", "message", new RequestService().getById(id).toString());
-    }
+    @RequestMapping(method = RequestMethod.GET, produces ="application/json")
+    public ResponseEntity<List<Request>> getAll() {
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<>(new RequestService().getAll(), httpHeaders, HttpStatus.OK);
+    } 
+    
+    
+    @RequestMapping(value="{id}", method = RequestMethod.GET, produces ="application/json")
+    public ResponseEntity<Request> getById(@PathVariable int id) {
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<>(new RequestService().getById(id), httpHeaders, HttpStatus.OK);
+    }   
     
     
 }

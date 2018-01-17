@@ -5,7 +5,10 @@
  */
 package com.mycompany.troklos.servicelayer;
 
+import com.mycompany.troklos.businesslayer.Privileges;
+import com.mycompany.troklos.datalayer.PrivilegesDAO;
 import com.mycompany.troklos.datalayer.PrivilegesDAOImpl;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,4 +21,20 @@ public class PrivilegesService extends CommonService {
     public PrivilegesService() {
         dao = new PrivilegesDAOImpl();
     }
+    
+    public List<Privileges> getAll() {
+        List<Privileges> listaPrivileges;
+        dao.beginTransaction();
+        listaPrivileges = ((PrivilegesDAO) dao).getAll();
+        dao.closeTransaction(true);
+        return listaPrivileges;
+    }
+    
+    public Privileges getById(int id) {
+        Privileges r;
+        dao.beginTransaction();
+        r = ((PrivilegesDAO) dao).getById(id);
+        dao.closeTransaction(true);
+        return r;
+    } 
 }

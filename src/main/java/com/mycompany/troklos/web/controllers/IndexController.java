@@ -5,28 +5,31 @@
  */
 package com.mycompany.troklos.web.controllers;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 /**
  *
  * @author daniel
  */
 
-@Controller("indexController")
+@RestController("indexController")
+@EnableWebMvc
 @RequestMapping(value={"/index", "/"})
 public class IndexController {
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getAll() {
-        return new ModelAndView("index", "message", "indice");
+    
+    private final HttpHeaders httpHeaders = new HttpHeaders();
+    
+    @RequestMapping(method = RequestMethod.GET, produces ="application/json")
+    public ResponseEntity<String> getDefaultResponse() {           
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<>("{\"resources\":[\"privileges\",\"request\",\"user\"]}", httpHeaders, HttpStatus.OK);
     }
     
-    @RequestMapping(value="{id}", method = RequestMethod.GET)
-    public ModelAndView getById(@PathVariable int id) {
-        return new ModelAndView("index", "message", id);
-    }
-    
-    
+         
 }

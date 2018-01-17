@@ -6,6 +6,7 @@
 package com.mycompany.troklos.datalayer;
 
 import com.mycompany.troklos.businesslayer.Privileges;
+import java.util.List;
 
 /**
  *
@@ -14,13 +15,13 @@ import com.mycompany.troklos.businesslayer.Privileges;
 public class PrivilegesDAOImpl extends CommonDAOImpl implements PrivilegesDAO {
 
     @Override
-    public Privileges getById() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Privileges getById(int id) {
+        return (Privileges) session.get(Privileges.class, id);
     }
 
     @Override
-    public Privileges getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Privileges> getAll() {
+        return session.createCriteria(Privileges.class).list();        
     }
       
 }
