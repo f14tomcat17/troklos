@@ -1,6 +1,18 @@
 package com.mycompany.troklos.businesslayer;
 // Generated 15-ene-2018 13:15:53 by Hibernate Tools 4.3.1
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+
+
+
+
+
+
+
 
 
 /**
@@ -8,8 +20,10 @@ package com.mycompany.troklos.businesslayer;
  */
 public class Request  implements java.io.Serializable {
 
-
+    @JsonProperty("idrequest")
      private int idrequest;
+     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="iduser")
+     @JsonIdentityReference(alwaysAsId=true)
      private User user;
      private String description;
      private String requestDate;

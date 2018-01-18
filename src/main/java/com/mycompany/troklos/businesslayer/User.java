@@ -2,6 +2,10 @@ package com.mycompany.troklos.businesslayer;
 // Generated 15-ene-2018 13:15:53 by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,8 +14,10 @@ import java.util.Set;
  */
 public class User  implements java.io.Serializable {
 
-
+     @JsonProperty("iduser")
      private Integer iduser;
+     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="idprivileges")
+     @JsonIdentityReference(alwaysAsId=true)
      private Privileges privileges;
      private String name;
      private String surname;
@@ -21,6 +27,8 @@ public class User  implements java.io.Serializable {
      private String region;
      private String country;
      private String password;
+     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="idrequest")
+     @JsonIdentityReference(alwaysAsId=true)
      private Set requests = new HashSet(0);
 
     public User() {

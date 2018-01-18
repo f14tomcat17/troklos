@@ -2,6 +2,7 @@ package com.mycompany.troklos.businesslayer;
 // Generated 15-ene-2018 13:15:53 by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,7 @@ import java.util.Set;
  */
 public class Privileges  implements java.io.Serializable {
 
-
+     @JsonProperty("idprivileges")
      private Integer idprivileges;
      private String name;
      private Set users = new HashSet(0);
