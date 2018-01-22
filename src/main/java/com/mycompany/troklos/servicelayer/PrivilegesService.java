@@ -22,7 +22,7 @@ public class PrivilegesService extends CommonService {
         dao = new PrivilegesDAOImpl();
     }
     
-    public List<Privileges> getAll() {
+    public List getAll() {
         List<Privileges> listaPrivileges;
         dao.beginTransaction();
         listaPrivileges = ((PrivilegesDAO) dao).getAll();

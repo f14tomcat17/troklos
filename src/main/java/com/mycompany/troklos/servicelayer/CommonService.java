@@ -21,19 +21,19 @@ public abstract class CommonService {
         
     public void update(Serializable item) {
         dao.beginTransaction();
-        dao.update(item, this.getClass());
+        dao.update(item);
         dao.closeTransaction(true);
     }
     
     public void insert(Serializable item) {
         dao.beginTransaction();
-        dao.insert(item, this.getClass());
+        dao.insert(item);
         dao.closeTransaction(true);
     }
     
     public void delete(Serializable item) {
         dao.beginTransaction();
-        dao.delete(item, this.getClass());
+        dao.delete(item);
         dao.closeTransaction(true);
     }
 }

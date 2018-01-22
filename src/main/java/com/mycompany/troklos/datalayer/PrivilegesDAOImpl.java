@@ -20,8 +20,8 @@ public class PrivilegesDAOImpl extends CommonDAOImpl implements PrivilegesDAO {
     }
 
     @Override
-    public List<Privileges> getAll() {
-        return session.createCriteria(Privileges.class).list();        
+    public List getAll() {
+        return session.createQuery("select new map(p.idprivileges as idprivileges, p.name as name, concat('http://localhost:8080/AdoracionTroklosRest/requests/', r.idrequest) as urlItem) from Privileges p").list();
     }
       
 }

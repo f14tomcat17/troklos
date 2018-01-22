@@ -22,7 +22,7 @@ public class UserService extends CommonService {
         dao = new UserDAOImpl();
     }
     
-    public List<User> getAll() {
+    public List getAll() {
         List<User> listaUsers;
         dao.beginTransaction();
         listaUsers = ((UserDAO) dao).getAll();

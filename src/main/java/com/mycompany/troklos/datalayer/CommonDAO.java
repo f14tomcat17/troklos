@@ -6,6 +6,7 @@
 package com.mycompany.troklos.datalayer;
 
 import java.io.Serializable;
+import java.util.List;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -22,9 +23,11 @@ public interface CommonDAO extends InitializingBean, DisposableBean {
     
     public void beginTransaction();
     
-    public void update(Serializable item, Class<?> classType);
+    public List getAll();
     
-    public void insert(Serializable item, Class<?> classType);
+    public void update(Serializable item);
     
-    public void delete(Serializable item, Class<?> classType);
+    public void insert(Serializable item);
+    
+    public void delete(Serializable item);
 }

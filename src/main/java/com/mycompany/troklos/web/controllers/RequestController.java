@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 /**
  *
@@ -29,7 +30,7 @@ public class RequestController {
     private final HttpHeaders httpHeaders = new HttpHeaders();
     
     @RequestMapping(method = RequestMethod.GET, produces ="application/json")
-    public ResponseEntity<List<Request>> getAll() {
+    public ResponseEntity<List> getAll() {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<>(new RequestService().getAll(), httpHeaders, HttpStatus.OK);
     } 
@@ -41,5 +42,24 @@ public class RequestController {
         return new ResponseEntity<>(new RequestService().getById(id), httpHeaders, HttpStatus.OK);
     }   
     
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Integer> insert(@RequestBody Request request) {
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        new RequestService().insert(request);
+        return new ResponseEntity<>(request.getIdrequest(), httpHeaders, HttpStatus.OK);
+    }
     
+    @RequestMapping(method = RequestMethod.PUT, produces = "application/json")
+    public ResponseEntity<Request> update(@RequestBody Request request) {
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        new RequestService().update(request);
+        return new ResponseEntity<>(request, httpHeaders, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value="{id}", method = RequestMethod.DELETE, produces = "application/json")
+    public ResponseEntity<Integer> delete(@PathVariable int id) {
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        new RequestService().delete(id);
+        return new ResponseEntity<>(id, httpHeaders, HttpStatus.OK);
+    }
 }

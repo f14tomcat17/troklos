@@ -6,7 +6,6 @@
 package com.mycompany.troklos.datalayer;
 
 import com.mycompany.troklos.businesslayer.User;
-import java.util.List;
 
 /**
  *
@@ -14,6 +13,5 @@ import java.util.List;
  */
 public interface UserDAO extends CommonDAO {
     public User getById(int id);
-    
-    public List<User> getAll();        
+                
 }

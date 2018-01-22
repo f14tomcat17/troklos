@@ -20,8 +20,8 @@ public class RequestDAOImpl extends CommonDAOImpl implements RequestDAO {
     }
 
     @Override
-    public List<Request> getAll() {
-        return session.createCriteria(Request.class).list();        
+    public List getAll() {
+        return session.createQuery("select new map(r.idrequest as idrequest, r.description as description, r.status as status, concat('http://localhost:8080/AdoracionTroklosRest/requests/', r.idrequest) as urlItem) from Request r").list();
     }  
     
     

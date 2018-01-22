@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,7 +30,7 @@ public class UserController {
     private final HttpHeaders httpHeaders = new HttpHeaders();
     
     @RequestMapping(method = RequestMethod.GET, produces ="application/json")
-    public ResponseEntity<List<User>> getAll() {
+    public ResponseEntity<List> getAll() {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<>(new UserService().getAll(), httpHeaders, HttpStatus.OK);
     } 
@@ -39,5 +40,26 @@ public class UserController {
     public @ResponseBody ResponseEntity<User> getById(@PathVariable int id) {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<>(new UserService().getById(id), httpHeaders, HttpStatus.OK);
-    }   
+    } 
+    
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Integer> insert(@RequestBody User user) {
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        new UserService().insert(user);
+        return new ResponseEntity<>(user.getIduser(), httpHeaders, HttpStatus.OK);
+    }
+    
+    @RequestMapping(method = RequestMethod.PUT, produces = "application/json")
+    public ResponseEntity<User> update(@RequestBody User user) {
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        new UserService().update(user);
+        return new ResponseEntity<>(user, httpHeaders, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value="{id}", method = RequestMethod.DELETE, produces = "application/json")
+    public ResponseEntity<Integer> delete(@PathVariable int id) {
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        new UserService().delete(id);
+        return new ResponseEntity<>(id, httpHeaders, HttpStatus.OK);
+    }
 }

@@ -23,7 +23,7 @@ public class UserDAOImpl extends CommonDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<User> getAll() {
-        return session.createCriteria(User.class).list();        
+    public List getAll() {
+        return session.createQuery("select new map(u.name as name, u.surname as surname, concat('localhost:8080/AdoracionTroklosRest/users/', u.iduser) as urlItem) from User u").list();
     }       
 }

@@ -72,17 +72,17 @@ public abstract class CommonDAOImpl implements CommonDAO {
     }
     
     @Override
-    public void update(Serializable item, Class<?> classType) {        
+    public void update(Serializable item) {        
         session.update(item);        
     }
 
     @Override
-    public void insert(Serializable item, Class<?> classType) {        
+    public void insert(Serializable item) {        
         session.save(item);        
     }
 
     @Override
-    public void delete(Serializable item, Class<?> classType) {        
+    public void delete(Serializable item) {        
         session.delete(item);        
     }
     

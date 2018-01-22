@@ -6,7 +6,6 @@
 package com.mycompany.troklos.servicelayer;
 
 import com.mycompany.troklos.businesslayer.Request;
-import com.mycompany.troklos.businesslayer.User;
 import com.mycompany.troklos.datalayer.RequestDAO;
 import com.mycompany.troklos.datalayer.RequestDAOImpl;
 import java.util.List;
@@ -23,8 +22,8 @@ public class RequestService extends CommonService {
         dao = new RequestDAOImpl();
     }
     
-    public List<Request> getAll() {
-        List<Request> listaRequests;
+    public List getAll() {
+        List listaRequests;
         dao.beginTransaction();
         listaRequests = ((RequestDAO) dao).getAll();
         dao.closeTransaction(true);

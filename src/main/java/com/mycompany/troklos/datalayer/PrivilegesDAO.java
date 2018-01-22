@@ -6,14 +6,12 @@
 package com.mycompany.troklos.datalayer;
 
 import com.mycompany.troklos.businesslayer.Privileges;
-import java.util.List;
 
 /**
  *
  * @author daniel
  */
-public interface PrivilegesDAO {
+public interface PrivilegesDAO extends CommonDAO {
     public Privileges getById(int id);
-    
-    public List<Privileges> getAll();        
+                
 }
